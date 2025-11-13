@@ -2,17 +2,19 @@
 
 ## Version History
 
-### v1.0 (Original)
-- **Date**: Based on evdenis/adb_root project
-- **Scope**: Android 9 support only
+### v1.0 (Original Foundation)
+- **Date**: Based on [evdenis/adb_root](https://github.com/evdenis/adb_root) project
+- **Scope**: Android 9/10 support only
 - **Method**: Binary replacement approach
-- **Status**: Legacy version
+- **Status**: Legacy version - provided core functionality for Android 9/10
+- **Contribution**: Established fundamental ADB daemon root techniques and SELinux bypass methods
 
 ### v2.0 (Current Enhancement)
 - **Date**: November 2024
-- **Scope**: Android 9, 10, 11, 12+ support
-- **Key Innovation**: Version-specific compatibility strategies
+- **Scope**: Extended to Android 9, 10, 11, 12+ support
+- **Key Innovation**: Version-specific compatibility strategies and intelligent detection
 - **Status**: Active development
+- **Enhancement**: Built upon original foundation to address modern Android security architectures
 
 ## Development Iterations
 

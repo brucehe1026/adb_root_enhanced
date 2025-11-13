@@ -7,6 +7,8 @@
 
 Enhanced ADB Root module supporting Android 9, 10, 11, 12+ with version-specific optimizations and intelligent compatibility detection.
 
+> **📋 Project Origin**: This project is an enhanced version based on the original [evdenis/adb_root](https://github.com/evdenis/adb_root) project, extending support to Android 11, 12+ and fixing critical Android 10 compatibility issues.
+
 ## 🚀 Features
 
 - **Multi-Version Support**: Android 9, 10, 11, 12+ compatibility
@@ -151,6 +153,10 @@ Detailed version compatibility information:
 - **Minijail Bypass**: Handles Android 11+ sandboxing mechanisms
 - **Daemon Preservation**: Maintains ADB connectivity on Android 10
 
+### Original Project Foundation
+
+This enhanced version builds upon the excellent foundation provided by the original [evdenis/adb_root](https://github.com/evdenis/adb_root) project, which established the core ADB daemon root functionality for Android 9/10. Our enhancements extend this capability to modern Android versions while maintaining the original project's reliability and simplicity.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
@@ -174,9 +180,20 @@ This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) 
 
 ## 🙏 Acknowledgments
 
-- Original [evdenis/adb_root](https://github.com/evdenis/adb_root) project
-- [Magisk](https://github.com/topjohnwu/Magisk) by topjohnwu
-- Android Open Source Project
+### Original Project
+- **[evdenis/adb_root](https://github.com/evdenis/adb_root)** - The original ADB Root project that this enhanced version is based on. The original project provided Android 9/10 support with the core ADB daemon root functionality.
+
+### Technical Foundation
+- [Magisk](https://github.com/topjohnwu/Magisk) by topjohnwu - The root solution that makes this module possible
+- Android Open Source Project - For the ADB daemon source code and documentation
+
+### Enhancement Contributions
+This enhanced version extends the original project by:
+- Adding Android 11, 12+ support with minijail bypass
+- Fixing critical Android 10 ADB detection issues
+- Implementing intelligent version detection
+- Creating version-specific optimization strategies
+- Providing comprehensive compatibility testing tools
 
 ## 📞 Support
 
@@ -186,4 +203,4 @@ This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) 
 
 ---
 
-**⭐ If this project"# adb_root_enhanced" 
+**⭐ If this project helps you, please give it a star!**
