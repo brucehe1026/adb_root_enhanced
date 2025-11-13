@@ -1,0 +1,33 @@
+# Android 10 Compatible SELinux Policy
+# This policy enhances root access without breaking ADB functionality
+
+# Basic adbd root transitions (minimal set for Android 10)
+allow adbd adbd process setcurrent
+allow adbd su process dyntransition
+
+# Property access for root functionality
+allow adbd property_type property_service
+allow adbd init property_service
+
+# Essential file access
+allow adbd rootfs file { read write }
+allow adbd system_file file { read execute }
+
+# Process transitions
+allow adbd self process transition
+allow adbd magisk process transition
+
+# Socket access for ADB functionality
+allow adbd self unix_stream_socket { create connect write read }
+
+# Android 10 specific - avoid breaking ADB
+allow adbd adbd_socket sock_file { write read create };
+allow adbd device dir { search read };
+allow adbd devpts chr_file { read write };
+
+# Minimal capability set
+allow adbd self capability { setuid setgid };
+
+# Prevent denials that might break ADB
+dontaudit adbd kernel security { compute_av };
+dontaudit adbd self capability { sys_admin };

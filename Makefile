@@ -9,7 +9,7 @@ all: $(ZIP)
 zip: $(ZIP)
 
 %.zip: clean
-	zip -r9 $(ZIP) . -x $(MODNAME)-*.zip LICENSE .gitignore .gitattributes Makefile /.git*
+	zip -r9 $(ZIP) . -x $(MODNAME)-*.zip LICENSE .gitignore .gitattributes Makefile build_enhanced.sh build output "*/build/*" "*/output/*" "*.patch"
 
 install: $(ZIP)
 	adb push $(ZIP) /sdcard/
@@ -22,4 +22,7 @@ clean:
 update:
 	curl https://raw.githubusercontent.com/topjohnwu/Magisk/master/scripts/module_installer.sh > META-INF/com/google/android/update-binary
 
-.PHONY: all zip %.zip install clean update
+build-enhanced:
+	bash build_enhanced.sh
+
+.PHONY: all zip %.zip install clean update build-enhanced

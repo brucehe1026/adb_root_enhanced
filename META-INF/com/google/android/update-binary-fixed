@@ -45,15 +45,18 @@ ANDROID_VERSION=$(getprop ro.build.version.release)
 case $API_LEVEL in
     28|29) 
         ui_print "Detected Android 9/10 (API $API_LEVEL)"
-        ui_print "Using standard ADB root method"
+        ui_print "Using SELinux policy enhancement only"
+        ANDROID_10_COMPAT=true
         ;;
     30|31|32|33)
         ui_print "Detected Android 11/12/13+ (API $API_LEVEL)"
         ui_print "Using enhanced bypass method for modern Android"
+        ANDROID_10_COMPAT=false
         ;;
     *)
         ui_print "Detected Android $ANDROID_VERSION (API $API_LEVEL)"
         ui_print "Using enhanced bypass method (experimental)"
+        ANDROID_10_COMPAT=false
         ;;
 esac
 
@@ -67,6 +70,19 @@ fi
 
 # Install the module
 install_module
+
+# Android 10 specific setup
+if [ "$ANDROID_10_COMPAT" = true ]; then
+    ui_print "Configuring Android 10 compatibility..."
+    
+    # For Android 10, we only enhance SELinux policies
+    # Don't replace the adbd binary to maintain compatibility
+    rm -f "$MODPATH/system/bin/adbd"
+    ui_print "Removed adbd binary replacement for Android 10 compatibility"
+    
+    # Keep only SELinux policy enhancements
+    ui_print "SELinux policy enhancement applied"
+fi
 
 # Additional setup for modern Android versions
 if [ $API_LEVEL -ge 30 ]; then

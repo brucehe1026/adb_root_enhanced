@@ -1,3 +1,44 @@
+# Enhanced SELinux policy for ADB Root supporting Android 9-12+
+
+# Basic adbd root transitions
 allow adbd adbd process setcurrent
 allow adbd su process dyntransition
 allow su * * *
+
+# Android 11+ minijail bypass support
+allow adbd self capability { setuid setgid setpcap };
+allow adbd self capability2 { setuid setgid };
+
+# Property access for modern Android versions
+allow adbd property_type { property_service set_prop };
+allow adbd init property_service;
+
+# File system access
+allow adbd rootfs file { read write create unlink open };
+allow adbd system_file file { read write execute };
+allow adbd vendor_file file { read write execute };
+
+# Process and domain transitions
+allow adbd self process { transition dyntransition };
+allow adbd magisk process transition;
+allow adbd magisk_file file { read write execute };
+
+# Socket and network access
+allow adbd self unix_stream_socket { create connect write read };
+allow adbd self tcp_socket { create connect write read };
+
+# Modern Android compatibility (11+)
+allow adbd toolbox_exec file { read execute };
+allow adbd shell_exec file { read execute };
+allow adbd system_data_file dir { search read write };
+allow adbd system_data_file file { read write create unlink open };
+
+# Bypass additional security checks
+allow adbd security_file dir { search read };
+allow adbd security_file file { read write };
+
+# Enhanced for Android 12+
+allow adbd vendor_toolbox_exec file { read execute };
+allow adbd apexd_file file { read execute };
+allow adbd apex_data_file dir { search read write };
+allow adbd apex_data_file file { read write create unlink open };
